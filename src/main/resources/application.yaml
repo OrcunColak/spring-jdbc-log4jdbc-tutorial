@@ -1,0 +1,40 @@
+spring:
+  config:
+    import: application-h2.properties
+
+# Logging configurations
+logging:
+  level:
+    jdbc:
+      audit: off
+      # Displays SQL statements with placeholders replaced by actual data
+      sqlonly: off
+      
+      # Logs events related to opening and closing connections, as well as displaying information about all open connection numbers.
+      # This is helpful for identifying and resolving connection leak problems.
+      connection: off
+      # Logs the executed SQL along with timing statistics,
+      sqltiming: info
+      
+      # Logs all JDBC calls, including calls to ResultSet objects. This produces even more extensive output.
+      resultset: off
+      # Logs JDBC results in a table format. Debug level fills in unread values in the result set.
+      resultsettable: off
+
+log4jdbc:
+  auto:
+    load:
+      popular:
+        # we don't need to autoload drivers
+        drivers: false
+  dump:
+    sql:
+      # When logging SQL, if this value is greater than 0, the logged SQL will be formatted into lines with a maximum length
+      # specified by this value. Set it to 0 if you prefer log4jdbc not to attempt breaking the SQL into lines.
+      maxlinelength: 0
+      addsemicolon: true
+  trim:
+    sql:
+      # By default, if consecutive blank lines occur, they are collapsed into just one blank line.
+      # Adjusting this setting to false prevents the trimming of additional blank lines.
+      extrablanklines: false
